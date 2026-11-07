@@ -43,4 +43,6 @@ uv run python manage.py migrate
 uv run python manage.py runserver     # la app en http://127.0.0.1:8000
 uv run pytest                         # tests
 uv run ruff check .                   # lint
+git config core.hooksPath .githooks   # una vez por clon: activa el guardián del pack
+uv run python ci/check_pack.py        # integridad del pack (también corre en cada commit)
 ```

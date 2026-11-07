@@ -44,8 +44,13 @@ Hoy todo corre en local (SQLite). No hay despliegue externo: decidirlo es una es
 
 ## Reglas duras
 
-- Empieza cada sesión con el **chequeo de consistencia**: HEAD de la bitácora vs `git log`,
-  commits reflejados, estados vs evidencia, handoff fresco. No continúes sobre un estado falso.
+- El pack está protegido: `.githooks/pre-commit` corre `ci/check_pack.py` en cada commit y
+  rechaza el daño (archivos borrados, secciones faltantes, ADRs modificados). Si te rechaza:
+  corrige o restaura (`git checkout HEAD -- <ruta>`). **Nunca lo desactives.** Modificar el
+  pack (AGENTS.md, INICIO.md, docs/, _templates/) es una **escalación a Kevin**.
+- Empieza cada sesión con el **chequeo de consistencia**: guardián del pack, HEAD de la
+  bitácora vs `git log`, commits reflejados, estados vs evidencia, handoff fresco.
+  No continúes sobre un estado falso.
 - Nunca declares "listo" sin handoff actualizado y consistencia PASS.
 - Código y comentarios en inglés; commits, specs y documentación en español.
 - Commits con prefijo amarrado al ciclo: `feat(F-NNN):`, `test(F-NNN):`, `fix(F-NNN):`, `docs(F-NNN):`, `gate(F-NNN):`.

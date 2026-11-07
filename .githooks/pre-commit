@@ -1,0 +1,8 @@
+#!/bin/sh
+# Gate fisico local: bloquea commits que dañen el pack (ciclo-producto).
+# Restaurar un archivo dañado: git checkout HEAD -- <ruta>
+if command -v uv >/dev/null 2>&1; then
+  uv run python ci/check_pack.py
+else
+  python ci/check_pack.py
+fi
