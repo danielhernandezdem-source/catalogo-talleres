@@ -1,0 +1,10 @@
+line-length = 100
+target-version = "py312"
+
+[lint]
+exclude = ["taller/migrations/*"]  # generated code, never hand-edited
+# RUF012: Django's Meta class attributes (ordering, verbose_name_plural) are the
+# framework idiom, not mutable class state to guard.
+ignore = ["RUF012"]
+
+

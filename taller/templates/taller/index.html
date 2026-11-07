@@ -1,0 +1,36 @@
+{% extends "taller/base.html" %}
+
+{% block content %}
+<h1 class="h3 mb-3">Encuentra tu taller de mecánica</h1>
+
+<form method="get" class="row g-2 mb-4">
+  <div class="col-12 col-md-8">
+    <input type="text" name="q" value="{{ query }}" class="form-control"
+           placeholder="Buscar por nombre o ciudad...">
+  </div>
+  <div class="col-12 col-md-4">
+    <button type="submit" class="btn btn-primary w-100">Buscar</button>
+  </div>
+</form>
+
+{% if talleres %}
+  <div class="row g-3">
+    {% for taller in talleres %}
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title mb-1">{{ taller.nombre }}</h5>
+            <p class="text-muted mb-2">{{ taller.ciudad }}</p>
+            {% if taller.descripcion %}<p class="card-text">{{ taller.descripcion|truncatewords:25 }}</p>{% endif %}
+            {% if taller.telefono %}<p class="mb-0 small">📞 {{ taller.telefono }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="alert alert-info">
+    {% if query %}No hay talleres que coincidan con «{{ query }}».{% else %}Aún no hay talleres en el catálogo.{% endif %}
+  </div>
+{% endif %}
+{% endblock %}
