@@ -51,9 +51,14 @@
 ## Lecciones (→ reusar en el proyecto)
 - Verificar rutas con git: usar rutas nativas `C:/...` (las `/c/...` no las traduce git en Windows).
 - Un clon fresco como prueba final del andamio: detecta pasos ocultos no documentados.
+- **Cualquier archivo bajo `.github/workflows/` exige scope `workflow` en el token de GitHub**,
+  aunque sea un README: el push inicial fue rechazado dos veces por el marcador de CI mal
+  ubicado. Regla: nada vive en esa ruta hasta que el CI exista de verdad (ADR-0002).
 
 ## Handoff (contexto mínimo viable)
-- HEAD: `7ae3b83` · working tree: limpio (local, sin push)
+- HEAD: `8483be4` · working tree: limpio · **PUSHEADO a origin (main y dev)**
+- Remoto: https://github.com/danielhernandezdem-source/catalogo-talleres (autenticación:
+  token de Daniel en `.git/credentials_local`, aislado del equipo de Kevin)
 - Estado: Fase 0 completa y verificada. Datos de demo cargados (3 talleres, superusuario `admin`).
-- Siguiente acción: Kevin da la URL del remoto → push de `main` → crear `dev`. Después,
-  primera feature real (F-001) siguiendo INICIO.md en un chat nuevo.
+- Siguiente acción: primera feature real (F-001) siguiendo INICIO.md en un chat nuevo;
+  el agente corre el chequeo de consistencia, entrevista al dueño y crea la NB.
