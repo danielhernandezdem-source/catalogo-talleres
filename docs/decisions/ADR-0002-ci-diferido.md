@@ -16,5 +16,7 @@ Opción 2. Gates físicos en local (pytest + ruff + manage.py check). Revisar tr
 (registrado en `docs/debates.md` D-001).
 
 ## Consecuencias
-- `.github/workflows/` queda como marcador con un comentario de intención (no activo).
+- `ci/ci-futuro.md` queda como marcador de intención (no activo). Nota (2026-11): no vive
+  bajo `.github/workflows/` porque GitHub exige el scope `workflow` en el token para
+  escribir CUALQUIER archivo en esa ruta — y el MVP no necesita ese permiso.
 - Cuando se active, los mismos comandos locales se convierten en el workflow.
