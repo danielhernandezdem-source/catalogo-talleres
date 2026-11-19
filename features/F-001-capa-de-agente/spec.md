@@ -42,6 +42,24 @@
 3. T1 y T2 ejecutados con resultado registrado en la bitácora.
 4. Commit `feat(F-001)` incluye código + bitácora actualizada en el mismo commit.
 
+## Declaración del GATE C2 (completa antes de pedirlo)
+- qué aprueba:: cierre de F-001 (verificada-e2e → completada) y el merge
+  `feature/F-001-capa-de-agente` → `main` (push a origin incluido).
+- comportamientos esperados:: (1) un clon fresco que sigue INICIO.md paso 0 queda con el
+  guardián activo; (2) `check_pack.py` rechaza commits que dañen el pack, incluido
+  `docs/agentes.md` (T1/T1b); (3) toda feature nueva exige "Consumo del agente" en su
+  bitácora y "Modo de modelo por bloque" en su spec (T4); (4) la política de niveles
+  queda en `docs/agentes.md` sin nombres de modelo (T2).
+- NO afectado (regresión):: el ciclo existente (NB → C1 → F1 → F2 → C2), las plantillas
+  previas (secciones anteriores intactas — T4 PASS validó que las nuevas se AGREGARON),
+  los 3 ADRs previos (huellas intactas en INDEX), el andamio Django (pytest 2 passed
+  tras el cambio) y el hook pre-commit (sigue bloqueando: PACK: OK en cada commit).
+- evidencia:: T1/T1b rechazo y recuperación, T2 = 0 coincidencias, T3 = 4 ADRs en INDEX,
+  T4 + PACK: OK, pytest 2 passed (evidencia completa en bitácora de F-001).
+- si se rechaza:: se restaura el pack (`git checkout HEAD -- <ruta>`), la feature vuelve
+  a en-ejecucion con las correcciones; NB-001 y ADR-0004 se reescriben si la objeción
+  es de fondo.
+
 ## Checklist de calidad del spec (marcar antes del GATE C1)
 - [x] Todo requisito es observable (no dice cómo implementarlo)
 - [x] Tiene al menos un comportamiento de error (SI/THEN)
