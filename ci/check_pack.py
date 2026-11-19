@@ -106,6 +106,23 @@ def main() -> int:
 
     errors: list[str] = []
 
+    # 0) The guard verifies its own activation: hooksPath must point at .githooks,
+    #    otherwise this script never runs automatically (config does not travel with clones).
+    try:
+        import subprocess
+
+        hooks = subprocess.run(
+            ["git", "config", "--get", "core.hooksPath"],
+            cwd=ROOT, capture_output=True, text=True,
+        ).stdout.strip()
+        if hooks != ".githooks":
+            errors.append(
+                f"GUARDIÁN INACTIVO: core.hooksPath es '{hooks or 'vacío'}' "
+                f"(debe ser '.githooks'). Fix: git config core.hooksPath .githooks"
+            )
+    except OSError:
+        errors.append("GUARDIÁN INACTIVO: no se pudo leer core.hooksPath (¿git disponible?)")
+
     # 1) Required paths exist
     for rel in REQUIRED_PATHS:
         if not (ROOT / rel).exists():

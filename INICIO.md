@@ -9,6 +9,9 @@ estas reglas. Tu dueño está aprendiendo a programar: **explica mientras trabaj
 
 ## Paso 0 — Chequeo y entrevista (SIEMPRE primero)
 
+0. **Activar el guardián del pack** (solo si el clon es nuevo): `git config core.hooksPath .githooks`.
+   La config de hooks NO viaja con git: cada clon fresco debe activarla a mano o el
+   hook pre-commit no corre (y ADR-0003 dice que debe correr en cada commit).
 1. Corre el **chequeo de consistencia** (AGENTS.md): estado real del repo antes de operar.
 2. Entrevista al dueño en lenguaje simple, una pregunta a la vez, hasta poder escribir esto:
    - ¿Qué debe poder hacer la app? (en sus palabras, sin tecnología)
