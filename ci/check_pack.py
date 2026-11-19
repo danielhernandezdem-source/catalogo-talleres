@@ -31,6 +31,7 @@ REQUIRED_PATHS = [
     "docs/fases.md",
     "docs/metricas.md",
     "docs/debates.md",
+    "docs/agentes.md",
     "docs/decisions",
     "docs/decisions/INDEX.md",
     "backlog",
@@ -60,8 +61,14 @@ REQUIRED_SECTIONS = {
     ],
     "docs/fases.md": ["## Fase 0", "## Historia de fases"],
     "docs/metricas.md": ["## Registro de revisión"],
-    "_templates/bitacora.md": ["## Registro de verificaciones", "## Handoff"],
-    "_templates/spec.md": ["## Qué NO debe hacer", "## Comportamientos de error"],
+    "docs/agentes.md": [
+        "## Regla de oro",
+        "## Niveles",
+        "## Escalación de modelo",
+        "## Registro",
+    ],
+    "_templates/bitacora.md": ["## Registro de verificaciones", "## Consumo del agente", "## Handoff"],
+    "_templates/spec.md": ["## Qué NO debe hacer", "## Comportamientos de error", "## Modo de modelo por bloque"],
 }
 
 
@@ -105,6 +112,23 @@ def main() -> int:
         return update_index()
 
     errors: list[str] = []
+
+    # 0) The guard verifies its own activation: hooksPath must point at .githooks,
+    #    otherwise this script never runs automatically (config does not travel with clones).
+    try:
+        import subprocess
+
+        hooks = subprocess.run(
+            ["git", "config", "--get", "core.hooksPath"],
+            cwd=ROOT, capture_output=True, text=True,
+        ).stdout.strip()
+        if hooks != ".githooks":
+            errors.append(
+                f"GUARDIÁN INACTIVO: core.hooksPath es '{hooks or 'vacío'}' "
+                f"(debe ser '.githooks'). Fix: git config core.hooksPath .githooks"
+            )
+    except OSError:
+        errors.append("GUARDIÁN INACTIVO: no se pudo leer core.hooksPath (¿git disponible?)")
 
     # 1) Required paths exist
     for rel in REQUIRED_PATHS:

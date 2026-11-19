@@ -9,6 +9,9 @@ estas reglas. Tu dueño está aprendiendo a programar: **explica mientras trabaj
 
 ## Paso 0 — Chequeo y entrevista (SIEMPRE primero)
 
+0. **Activar el guardián del pack** (solo si el clon es nuevo): `git config core.hooksPath .githooks`.
+   La config de hooks NO viaja con git: cada clon fresco debe activarla a mano o el
+   hook pre-commit no corre (y ADR-0003 dice que debe correr en cada commit).
 1. Corre el **chequeo de consistencia** (AGENTS.md): estado real del repo antes de operar.
 2. Entrevista al dueño en lenguaje simple, una pregunta a la vez, hasta poder escribir esto:
    - ¿Qué debe poder hacer la app? (en sus palabras, sin tecnología)
@@ -37,7 +40,13 @@ estas reglas. Tu dueño está aprendiendo a programar: **explica mientras trabaj
 4. Implementa tarea por tarea: cada tarea = un commit (`feat(F-NNN):`) + tests verdes +
    bitácora actualizada en el mismo commit (plan, verificaciones, "Aprendí").
 5. Al terminar: todas las pruebas locales en verde, prueba e2e real descrita y ejecutada,
-   **GATE C2**: pide el cierre a Kevin. Con C2 → `archived/` + ADR si hubo decisión estructural.
+   **GATE C2**: pide el cierre a Kevin **con la declaración completa del gate** —
+   (a) qué aprueba exactamente (transición y, si aplica, merge rama → rama),
+   (b) comportamientos esperados después del cambio,
+   (c) qué NO debió verse afectado (regresión) y con qué evidencia se comprobó,
+   (d) evidencia de las verificaciones (resultado exacto).
+   Sin (a)-(d) el pedido está incompleto y no se presenta. Con C2 → `archived/` +
+   ADR si hubo decisión estructural.
 
 ## Regla de decisión por defecto (MVP)
 

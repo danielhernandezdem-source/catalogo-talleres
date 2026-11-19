@@ -1,7 +1,8 @@
 # Plantillas del pack
 
-Copias de las plantillas de la skill `ciclo-producto`, materializadas aquí para que el repo
-sea autosuficiente (cualquier agente las usa sin necesidad de skills externas).
+Copias materializadas aquí de las plantillas del pack **ciclo-producto**, para que el repo
+sea autosuficiente (cualquier agente las usa sin necesidad de skills externas ni de tener
+la skill instalada; el origen de la definición es la skill ciclo-producto de Hermes).
 
 - `backlog.md` — necesidad bruta (NB-NNN)
 - `spec.md` — contrato de la feature (qué, qué NO, errores SI/ENTONCES, tests)
