@@ -31,6 +31,14 @@ ejecutar tareas FUERTE.)
 ## Verificación end-to-end (paso final del spec)
 <los pasos concretos que prueban que la feature funciona de punta a punta>
 
+## Declaración del GATE C2 (completa antes de pedirlo)
+- qué aprueba:: <transición exacta; si aprueba merge: rama origen → rama destino>
+- comportamientos esperados:: <qué debe poder hacer el sistema tras el cambio>
+- NO afectado (regresión):: <comportamientos previos intactos + evidencia>
+- evidencia:: <tests/chequeos con su resultado exacto>
+- si se rechaza:: <qué se rehace o restaura>
+(Sin estos cinco campos el gate no se presenta: el humano no puede decidir a ciegas.)
+
 ## Checklist de calidad del spec (marcar antes del GATE C1)
 - [ ] Todo requisito es observable (no dice cómo implementarlo)
 - [ ] Tiene al menos un comportamiento de error (SI/THEN)
