@@ -1,5 +1,5 @@
 - title:: F-001-capa-de-agente — bitácora
-- tipo:: [[bitacora-feature]] · feature:: F-001 · estado:: en-ejecucion
+- tipo:: [[bitacora-feature]] · feature:: F-001 · estado:: completada
 - origen:: [[NB-001]] · rama:: feature/F-001-capa-de-agente · ambiente:: dev (local)
 - head:: fdc7abf · actualizado:: 2026-11-19
 
@@ -7,6 +7,8 @@
 | fecha | de → a | evidencia | gate |
 |---|---|---|---|
 | 2026-11-19 | borrador → en-ejecucion | spec aprobado por Kevin en sesión 2026-11-19 (propuesta de Daniel + 2 ajustes de Kevin: cuotas a la bitácora, NUNCA SOLO con evidencia) | C1 |
+| 2026-11-19 | en-ejecucion → verificada-e2e | T1-T4 + pytest 2 passed + PACK: OK (tabla de abajo) | F (evidencia) |
+| 2026-11-19 | verificada-e2e → completada + merge a main | aprobación con declaración completa (spec §Declaración GATE C2); Kevin aprueba apoyado en la evidencia registrada, sin re-verificación manual propia — registrada tal cual | C2 |
 
 ## Plan (bloques ejecutables)
 1. ✅ Fixes H1/H2 (guardián en clones frescos + texto de plantillas) — commit `b43cff4`
@@ -57,6 +59,7 @@
 - `core.hooksPath` no viaja con git: documentar su activación como paso 0 de clon nuevo.
 
 ## Handoff (contexto mínimo viable)
-- HEAD: `fdc7abf` · working tree: sucio (implementación F-001 lista, sin commit)
-- Estado: bloques 2-6 implementados y verificados; falta commit, push y GATE C2.
-- Siguiente acción: commit feat(F-001) + push → pedir C2 a Kevin → archived + ADR ya creado.
+- HEAD: `a10952e` (rama) · working tree: limpio tras commit de cierre
+- Estado: F-001 COMPLETADA con C2 de Kevin (2026-11-19); merge a main y push hechos.
+- Siguiente acción: ninguna de esta feature. Para el dueño: en su clon, correr
+  `git pull` + `git config core.hooksPath .githooks` (paso 0 de INICIO.md).
