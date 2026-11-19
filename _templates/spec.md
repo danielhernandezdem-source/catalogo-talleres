@@ -19,6 +19,15 @@
 | T1 | <comportamiento> | test de `tests/behavior/` |
 | T2 | <comportamiento> | prueba manual con pasos concretos |
 
+## Modo de modelo por bloque
+| bloque del plan | nivel (docs/agentes.md) | justificación |
+|---|---|---|
+| | | |
+
+(La política de niveles vive en `docs/agentes.md`; el modelo concreto lo pone la config
+del agente y se registra en la bitácora. Declarar el nivel es obligatorio antes de
+ejecutar tareas FUERTE.)
+
 ## Verificación end-to-end (paso final del spec)
 <los pasos concretos que prueban que la feature funciona de punta a punta>
 

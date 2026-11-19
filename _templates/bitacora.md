@@ -21,6 +21,14 @@
 ## Aprendí (explicaciones para el dueño)
 - <3-5 líneas simples por bloque de trabajo: qué, por qué, concepto nuevo con ejemplo>
 
+## Consumo del agente
+| fecha | tarea | nivel | modelo usado | notas |
+|---|---|---|---|---|
+| | | | | |
+
+(Cuotas del proveedor de ese día van aquí como notas: es evidencia que caduca, no
+política. La política de niveles vive en `docs/agentes.md`.)
+
 ## Commits
 - `<hash>` <resumen>
 

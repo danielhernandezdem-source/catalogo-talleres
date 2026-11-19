@@ -31,6 +31,7 @@ REQUIRED_PATHS = [
     "docs/fases.md",
     "docs/metricas.md",
     "docs/debates.md",
+    "docs/agentes.md",
     "docs/decisions",
     "docs/decisions/INDEX.md",
     "backlog",
@@ -60,8 +61,14 @@ REQUIRED_SECTIONS = {
     ],
     "docs/fases.md": ["## Fase 0", "## Historia de fases"],
     "docs/metricas.md": ["## Registro de revisión"],
-    "_templates/bitacora.md": ["## Registro de verificaciones", "## Handoff"],
-    "_templates/spec.md": ["## Qué NO debe hacer", "## Comportamientos de error"],
+    "docs/agentes.md": [
+        "## Regla de oro",
+        "## Niveles",
+        "## Escalación de modelo",
+        "## Registro",
+    ],
+    "_templates/bitacora.md": ["## Registro de verificaciones", "## Consumo del agente", "## Handoff"],
+    "_templates/spec.md": ["## Qué NO debe hacer", "## Comportamientos de error", "## Modo de modelo por bloque"],
 }
 
 

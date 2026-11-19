@@ -1,7 +1,7 @@
 - title:: F-001-capa-de-agente — bitácora
 - tipo:: [[bitacora-feature]] · feature:: F-001 · estado:: en-ejecucion
 - origen:: [[NB-001]] · rama:: feature/F-001-capa-de-agente · ambiente:: dev (local)
-- head:: b43cff4 · actualizado:: 2026-11-19
+- head:: fdc7abf · actualizado:: 2026-11-19
 
 ## Historia del ciclo
 | fecha | de → a | evidencia | gate |
@@ -10,16 +10,21 @@
 
 ## Plan (bloques ejecutables)
 1. ✅ Fixes H1/H2 (guardián en clones frescos + texto de plantillas) — commit `b43cff4`
-2. ⬜ `docs/agentes.md` (política, sin modelos ni cuotas) + ADR-0004 + INDEX
-3. ⬜ Plantillas: bitácora "Consumo del agente" + spec "Modo de modelo por bloque"
-4. ⬜ `docs/metricas.md`: M6 coste del agente, M7 deriva de modelo
-5. ⬜ Guardián: proteger `docs/agentes.md` (REQUIRED_PATHS + REQUIRED_SECTIONS)
-6. ⬜ Verificación T1-T4 + e2e → GATE C2
+2. ✅ `docs/agentes.md` (política, sin modelos ni cuotas) + ADR-0004 + INDEX
+3. ✅ Plantillas: bitácora "Consumo del agente" + spec "Modo de modelo por bloque"
+4. ✅ `docs/metricas.md`: M6 coste del agente, M7 deriva de modelo
+5. ✅ Guardián: proteger `docs/agentes.md` (REQUIRED_PATHS + REQUIRED_SECTIONS)
+6. ✅ Verificación T1-T4 → pendiente GATE C2
 
 ## Registro de verificaciones
 | fecha | tipo | qué corrió | ambiente | resultado | evidencia | aprobó |
 |---|---|---|---|---|---|---|
 | 2026-11-19 | gate F (local) | `uv run python ci/check_pack.py` | dev | PASS | commit b43cff4 (falló con hooksPath=vacio, pasó con .githooks) | — |
+| 2026-11-19 | verificación T1 | check_pack con `docs/agentes.md` movido fuera → falla `FALTA` → restaurado → PASS | dev | PASS 2/2 | ejecución en sesión 2026-11-19 | — |
+| 2026-11-19 | verificación T1b | check_pack con sección `## Registro` eliminada del doc → falla `SECCIÓN FALTANTE` → restaurado → PASS | dev | PASS | ejecución en sesión 2026-11-19 | — |
+| 2026-11-19 | verificación T2 | `grep -icE "openrouter\|nous\|gpt\|claude\|gemini\|glm" docs/agentes.md` | dev | 0 coincidencias | ejecución en sesión 2026-11-19 | — |
+| 2026-11-19 | verificación T3 | `check_pack.py --update-index` → 4 ADRs registrados; huella ADR-0004 en INDEX; check PASS | dev | PASS | docs/decisions/INDEX.md | — |
+| 2026-11-19 | verificación T4 | check_pack valida secciones nuevas de plantillas (`Consumo del agente`, `Modo de modelo por bloque`) | dev | PASS | REQUIRED_SECTIONS actualizado + PACK: OK | — |
 
 ## Consumo del agente
 | fecha | tarea | nivel | modelo usado | notas |
@@ -45,11 +50,13 @@
 
 ## Commits
 - `b43cff4` fix(pack): guardián visible y activo en clones frescos
+- `fdc7abf` gate(F-001): NB-001 aprobada + spec C1 → en-ejecucion
+- (este commit) feat(F-001): capa de agente — política, ADR-0004, plantillas, métricas M6/M7, guardián
 
 ## Lecciones (→ reusar en el proyecto)
 - `core.hooksPath` no viaja con git: documentar su activación como paso 0 de clon nuevo.
 
 ## Handoff (contexto mínimo viable)
-- HEAD: `b43cff4` · working tree: sucio (NB-001 + spec + esta bitácora sin commit)
-- Estado: GATE C1 registrado; falta implementar bloques 2-6.
-- Siguiente acción: docs/agentes.md + ADR-0004 + plantillas + guardián, luego verificación T1-T4 y GATE C2 con Kevin.
+- HEAD: `fdc7abf` · working tree: sucio (implementación F-001 lista, sin commit)
+- Estado: bloques 2-6 implementados y verificados; falta commit, push y GATE C2.
+- Siguiente acción: commit feat(F-001) + push → pedir C2 a Kevin → archived + ADR ya creado.
