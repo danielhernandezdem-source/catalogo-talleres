@@ -5,9 +5,10 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Datos locales (nunca en el repo)
-db.sqlite3
-*.sqlite3
+# Base de datos SQLite: VERSIONADA a propósito (decisión de Daniel, 2026-11).
+# Riesgo asumido: es binario → si dos personas la editan a la vez, git no puede
+# mergear y hay que resolver a mano. Deuda: migrar a Postgres cuando duela
+# (ver docs/debates.md D-003).
 
 # Entorno y secretos
 .env
