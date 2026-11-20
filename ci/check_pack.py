@@ -120,7 +120,7 @@ def main() -> int:
 
         hooks = subprocess.run(
             ["git", "config", "--get", "core.hooksPath"],
-            cwd=ROOT, capture_output=True, text=True,
+            check=False, cwd=ROOT, capture_output=True, text=True,
         ).stdout.strip()
         if hooks != ".githooks":
             errors.append(
